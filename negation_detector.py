@@ -50,15 +50,15 @@ class NegationDetector(object):
         "Check whether a word starts with one of several prefixes."
         for pref in prefixes:
             if word_form.startswith(pref):
-                return True
-        return False
+                return True, pref
+        return False, None
     
     def suffix_check(self, word_form, prefixes):
         "Check whether a word starts with one of several prefixes."
         for suff in suffixes:
             if word_form.endswith(suff):
-                return True
-        return False
+                return True, suff
+        return False, None
     
     def negation_status(word, pos, lemma, use_affixes=False):
         """
@@ -76,22 +76,30 @@ class NegationDetector(object):
             kind = 'lemma'
         elif use_affixes:
             if pos.lower().startswith('v'):
-                # Check verbs:
-                if self.prefix_check(word, self.lexicon["VERB_STARTSWITH"]):
+                # Check verbs.
+                # Check for negative prefix.
+                prefixed, prefix = self.prefix_check(word, self.lexicon["VERB_STARTSWITH"])
+                if prefixed:
                     match = True
-                    kind = 'verb-prefix'
+                    kind = 'verb-prefix-' + prefix
             elif pos.lower.startswith('n'):
-                if self.prefix_check(word, self.lexicon["NOUN_STARTSWITH"]):
+                # Check for negative prefix.
+                prefixed, prefix = self.prefix_check(word, self.lexicon["NOUN_STARTSWITH"])
+                if prefixed:
                     match = True
-                    kind = 'noun-prefix'
+                    kind = 'noun-prefix-' + prefix
             elif pos.lower() in {'adj', 'jj'}:
-                # Check adjectives:
-                if self.prefix_check(word, self.lexicon["ADJ_STARTSWITH"]):
+                # Check adjectives.
+                # Check for negative prefix.
+                prefixed, prefix = self.prefix_check(word, self.lexicon["ADJ_STARTSWITH"])
+                if prefixed:
                     match = True
-                    kind = 'adj-prefix'
-                elif self.suffix_check(word, self.lexicon["ADJ_ENDSWITH"]):
+                    kind = 'adj-prefix-' + prefix
+                # Check for negative suffix.
+                suffixed, suffix = self.suffix_check(word, self.lexicon["ADJ_ENDSWITH"])
+                if suffixed:
                     match = True
-                    kind = 'adj-suffix'
+                    kind = 'adj-suffix-' + suffix
         return match, kind
     
     def check_sentence(self, sentence, use_affixes=False):
