@@ -1,0 +1,8 @@
+{
+  "WHOLEWORD": ["nada", "nadie", "ninguno", "nunca", "jamás", "tampoco", "no", "ni"],
+  "NOUN_STARTSWITH": [],
+  "VERB_STARTSWITH": [],
+  "LEMMA": [],
+  "ADJ_ENDSWITH": [],
+  "ADJ_STARTSWITH": ["in", "des", "contra", "a"]
+}

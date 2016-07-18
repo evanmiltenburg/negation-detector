@@ -1,0 +1,8 @@
+{
+  "LEMMA": ["ontberen"],
+  "NOUN_STARTSWITH": ["on","non","niet"],
+  "VERB_STARTSWITH": ["de", "mis", "dis", "mis"],
+  "ADJ_ENDSWITH": ["loos"],
+  "ADJ_STARTSWITH": ["on", "non", "in", "im", "a", "niet"],
+  "WHOLEWORD": ["geen", "niet", "nooit", "nimmer", "nergens", "noch", "niemand", "niets"]
+}

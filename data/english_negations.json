@@ -1,0 +1,8 @@
+{
+  "LEMMA": ["fail", "omit", "miss", "lack"],
+  "NOUN_STARTSWITH": [],
+  "VERB_STARTSWITH": ["de", "mis", "dis"],
+  "ADJ_ENDSWITH": ["less"],
+  "ADJ_STARTSWITH": ["a", "dis", "un", "non","un"],
+  "WHOLEWORD": ["none", "never", "sans", "no", "nobody", "n't", "not", "without", "nowhere", "nothing", "neither", "minus", "nor", "dont", "werent", "isnt", "doesnt", "couldnt", "shouldnt", "hasnt", "wont", "wouldnt", "cant", "arent", "havent", "didnt"]
+}
