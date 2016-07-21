@@ -4,7 +4,7 @@ import os
 import json
 from collections import namedtuple
 
-Token = namedtuple('Token',['word', 'pos', 'lemma', 'match', 'kind'])
+Token = namedtuple('Token',['idx', 'word', 'pos', 'lemma', 'match', 'kind'])
 
 class NegationDetector(object):
     """
@@ -109,9 +109,10 @@ class NegationDetector(object):
         """
         sentence_data = []
         tagged = self.tagger.tag(sentence)
-        for word, pos, lemma in tagged:
+        for idx, data in enumerate(tagged):
+            word, pos, lemma = data
             match, kind = self.negation_status(word, pos, lemma, use_affixes)
-            token = Token(word, pos, lemma, match, kind)
+            token = Token(idx, word, pos, lemma, match, kind)
             sentence_data.append(token)
         return sentence_data
     
